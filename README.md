@@ -1,5 +1,7 @@
 # CountriesList
 
+Info about various countries in the world
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
 ## Development server
