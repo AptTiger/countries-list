@@ -19,7 +19,10 @@
     "@angular/platform-browser": "~11.1.0",
     "@angular/platform-browser-dynamic": "~11.1.0",
     "@angular/router": "~11.1.0",
+    "@ngrx/data": "^13.0.2",
+    "bulma": "^0.9.3",
     "rxjs": "~6.6.0",
+    "swiper": "^8.0.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
