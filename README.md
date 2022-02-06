@@ -1,6 +1,7 @@
 # CountriesList
 
-Info about various countries in the world
+Get brief information about various countries in the world.
+Check it out on <https://countries.sabrefoxx.com>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
