@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
-  isShowDropdown: boolean;
+  isShowDropdown: boolean = false;
 
   constructor() { }
 

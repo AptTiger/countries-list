@@ -19,6 +19,7 @@ import { CountryThumbComponent } from './country-thumb/country-thumb.component';
     NavbarComponent,
     SearchFilterComponent,
     PaginationComponent,
+    CountryThumbComponent,
     FooterComponent
   ]
 })
