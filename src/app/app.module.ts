@@ -8,13 +8,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { ComponentModule } from './components/component.module';
 import { AboutComponent } from './pages/about/about.component';
+import { DetailsComponent } from './pages/details/details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LandingComponent,
-    AboutComponent
+    AboutComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
