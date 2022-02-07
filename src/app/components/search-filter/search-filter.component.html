@@ -1,0 +1,40 @@
+<div class="level">
+    <div class="level-left">
+        <div class="control">
+            <input class="input" type="text" placeholder="Normal input">
+        </div>
+    </div>
+
+    <div class="level-right">
+        <div class="dropdown" [class.is-active]="isShowDropdown"
+             (click)="toggleDropdown()">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                    <span>Filter by region</span>
+                    <span class="svg-icon is-small">
+                        <svg class="svg-icon">
+                            <use xlink:href="#chevron-down"></use>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                    <a href="#" class="dropdown-item">
+                        Dropdown item
+                    </a>
+                    <a class="dropdown-item">
+                        Other dropdown item
+                    </a>
+                    <a href="#" class="dropdown-item is-active">
+                        Active dropdown item
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        Other dropdown item
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

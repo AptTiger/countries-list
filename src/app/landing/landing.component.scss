@@ -1,0 +1,12 @@
+@import "node_modules/swiper/swiper.scss";
+
+/* uses ViewEncapsulation.None */
+
+.visited-countries {
+    border: 1px solid #b3b3b3;
+}
+
+.drag-icon {
+    max-width: 150px;
+    width: 100%;
+}

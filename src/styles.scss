@@ -1,3 +1,8 @@
+@import "bulma/sass/utilities/initial-variables",
+"bulma/sass/utilities/functions";
+$primary: #1fbad6;
+@import "bulma/sass/utilities/derived-variables";
+
 @import "bulma/sass/utilities/_all";
 @import "bulma/sass/base/_all";
 @import "bulma/sass/elements/_all";
@@ -5,6 +10,32 @@
 @import "bulma/sass/form/shared.sass";
 @import "bulma/sass/form/input-textarea.sass";
 @import "bulma/sass/components/dropdown.sass";
+@import "bulma/sass/components/level.sass";
 @import "bulma/sass/components/pagination.sass";
+@import "bulma/sass/components/navbar.sass";
 @import "bulma/sass/components/card.sass";
+@import "bulma/sass/layout/_all";
 
+.svg-icon {
+    display: inline !important;
+    width: 1.5rem; // 24px
+    height: 1.5rem; // 24px
+    stroke-width: 0;
+    vertical-align: middle !important;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+/* modify bulma */
+.navbar {
+    margin-bottom: 1em;
+}
+
+.navbar-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.columns {
+    margin: 0;
+}
