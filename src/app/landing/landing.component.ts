@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
+import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
 
-// Swiper.use([EffectCoverflow, Pagination]);
+SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-landing',
@@ -9,23 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  // swiperConfig: SwiperOptions;
+  swiperConfig: SwiperOptions;
 
   constructor() {
-    // this.swiperConfig = {
-    //   effect: 'coverflow',
-    //   grabCursor: true,
-    //   slidesPerView: 'auto',
-    //   pagination: true,
-    //   allowTouchMove: true,
-    //   coverflowEffect: {
-    //     rotate: 50,
-    //     stretch: 0,
-    //     depth: 100,
-    //     modifier: 1,
-    //     slideShadows: false
-    //   }
-    // }
+    this.swiperConfig = {
+      effect: 'coverflow',
+      grabCursor: true,
+      slidesPerView: 'auto',
+      pagination: true,
+      allowTouchMove: true,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: false
+      }
+    }
   }
 
   ngOnInit(): void {
