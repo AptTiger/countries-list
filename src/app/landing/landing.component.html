@@ -1,23 +1,28 @@
 <app-search-filter></app-search-filter>
 
-<aside>
-    <swiper [config]="swiperConfig">
-        <ng-template swiperSlide>
-            <app-country-thumb></app-country-thumb>
-        </ng-template>
-        <ng-template swiperSlide>
-            <app-country-thumb></app-country-thumb>
-        </ng-template>
-        <ng-template swiperSlide>
-            <app-country-thumb></app-country-thumb>
-        </ng-template>
-        <ng-template swiperSlide>
-            <app-country-thumb></app-country-thumb>
-        </ng-template>
-        <ng-template swiperSlide>
-            <app-country-thumb></app-country-thumb>
-        </ng-template>
-    </swiper>
+<aside class="columns">
+    <div class="column visited-countries is-three-quarters-desktop">
+        <swiper [config]="swiperConfig">
+            <ng-template swiperSlide>
+                <app-country-thumb></app-country-thumb>
+            </ng-template>
+            <ng-template swiperSlide>
+                <app-country-thumb></app-country-thumb>
+            </ng-template>
+            <ng-template swiperSlide>
+                <app-country-thumb></app-country-thumb>
+            </ng-template>
+            <ng-template swiperSlide>
+                <app-country-thumb></app-country-thumb>
+            </ng-template>
+            <ng-template swiperSlide>
+                <app-country-thumb></app-country-thumb>
+            </ng-template>
+        </swiper>
+    </div>
+    <div class="column is-one-quarter-desktop is-one-third-tablet">
+        <img src="/assets/images/drag-left.svg" class="drag-icon" alt="Drag Left">
+    </div>
 </aside>
 
 <main class="columns is-multiline is-3-desktop">
