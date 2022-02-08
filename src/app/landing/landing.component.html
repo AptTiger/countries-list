@@ -32,31 +32,11 @@
 </aside>
 
 <main class="columns is-multiline is-3-desktop">
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
-    </div>
-    <div class="column is-half-tablet is-one-quarter-desktop">
+    <div *ngFor="let country of countries$ | async"
+         class="column is-half-tablet is-one-quarter-desktop">
         <app-country-card></app-country-card>
     </div>
 </main>
 
-<app-pagination></app-pagination>
-
+<app-pagination [array]="(allCountries$ | async).countries" (pagedItems)="pagedItems($event)">
+</app-pagination>

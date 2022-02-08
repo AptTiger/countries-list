@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Country } from 'src/models/country.model';
 import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
 import { AppState } from '../reducers/country.reducer';
@@ -15,11 +15,12 @@ SwiperCore.use([Pagination]);
 })
 export class LandingComponent implements OnInit {
   swiperConfig: SwiperOptions;
-  countries$: Observable<Country[]>;
+  allCountries$: Observable<any>;
+  countries$: Subject<Country[]>;
 
   constructor(private store: Store<AppState>) {
-    this.countries$ = store.select(state => state.countries);
-    this.countries$.subscribe(c => console.log(c))
+    this.allCountries$ = store.select(state => state.countries);
+    this.countries$ = new Subject();
 
     this.swiperConfig = {
       grabCursor: true,
@@ -30,8 +31,13 @@ export class LandingComponent implements OnInit {
     }
   }
 
+  pagedItems(items: Country[]) {
+    this.countries$.next(items);
+  }
+
   ngOnInit(): void {
     this.store.dispatch({ type: '[COUNTRY] Load' });
+    // TODO action is called twice
   }
 
 }
