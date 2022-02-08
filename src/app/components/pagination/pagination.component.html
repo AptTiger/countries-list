@@ -28,7 +28,7 @@
         <!-- If the total number of pages is greater than 10, show a link to move halfway through the pages -->
         <li *ngIf="totalNumberOfPages >= 8 && currentPageNumber !== totalNumberOfPages">
             <a class="pagination-link" aria-label="Halfway" (click)="goto(halfWayThroughThePages)">
-                {{halfWayThroughThePages}}
+                &half;
             </a>
         </li>
 

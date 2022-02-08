@@ -34,7 +34,7 @@
 <main class="columns is-multiline is-3-desktop">
     <div *ngFor="let country of countries$ | async"
          class="column is-half-tablet is-one-quarter-desktop">
-        <app-country-card></app-country-card>
+        <app-country-card [details]="country"></app-country-card>
     </div>
 </main>
 
