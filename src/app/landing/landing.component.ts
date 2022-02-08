@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, ReplaySubject, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Country } from 'src/models/country.model';
 import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
 import { AppState } from '../reducers/country.reducer';
@@ -15,12 +15,11 @@ enum FilterType { SEARCH, REGION }
   styleUrls: ['./landing.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LandingComponent implements OnInit, OnDestroy {
+export class LandingComponent implements OnInit {
   allCountries$: Observable<Country[]>;
   filteredCountries$ = new Observable<Country[]>();
   subsetOfCountries$ = new Subject<Country[]>();
   swiperConfig: SwiperOptions;
-  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
   activeFilters: Array<(country: Country, index: number) => void>;
 
@@ -43,8 +42,8 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch({ type: '[COUNTRY] Load' });
     // TODO action is called twice
+    this.store.dispatch({ type: '[COUNTRY] Load' });
   }
 
   searchToken;
@@ -80,11 +79,6 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   filterListByRegion(token: string) {
     this.filterList(token, FilterType.REGION)
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.next(true);
-    this.subscriptions.complete();
   }
 
 }

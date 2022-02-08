@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Country } from 'src/models/country.model';
 
 @Component({
   selector: '[app-country-thumb]',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./country-thumb.component.scss']
 })
 export class CountryThumbComponent implements OnInit {
-
+  @Input() details: Country;
+  
   constructor() { }
 
   ngOnInit(): void {

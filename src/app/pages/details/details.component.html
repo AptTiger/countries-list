@@ -1,6 +1,6 @@
 <div class="columns is-2-desktop">
     <main class="column">
-        <app-country-card></app-country-card>
+        <app-country-card [details]="country$ | async"></app-country-card>
     </main>
     <aside class="column">
         <p>Time</p>
@@ -10,12 +10,9 @@
         </div>
         <p>Neighbors</p>
         <div class="columns is-multiline">
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
-            <div app-country-thumb class="column" style="max-width: 100px"></div>
+            <div *ngFor="let c of neighbors$ | async" app-country-thumb [details]="c"
+                 [routerLink]="['/details/' + c?.code]" class="column" style="max-width: 100px">
+            </div>
         </div>
     </aside>
 </div>

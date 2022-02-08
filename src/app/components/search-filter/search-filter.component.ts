@@ -12,7 +12,7 @@ export class SearchFilterComponent implements OnInit {
   isShowDropdown: boolean = false;
   inputTextChanged = new Subject<Event>();
   countryRegions$ = new Observable<any[]>();
-  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
+  private subscriptions$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   @Output() searchTermEntered = new EventEmitter();
   @Output() regionFilterSet = new EventEmitter();
@@ -28,15 +28,15 @@ export class SearchFilterComponent implements OnInit {
     this.inputTextChanged.pipe(
       map(e => (e.target as HTMLInputElement).value),
       debounceTime(100),
-      takeUntil(this.subscriptions)
+      takeUntil(this.subscriptions$)
     ).subscribe(text => {
       this.searchTermEntered.emit(text);
     });
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.next(true);
-    this.subscriptions.complete();
+    this.subscriptions$.next(true);
+    this.subscriptions$.complete();
   }
 
   toggleDropdown(): void {

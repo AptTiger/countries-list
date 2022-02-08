@@ -7,3 +7,7 @@ export const loadedCountries = createAction(
     '[COUNTRY] Country Loaded',
     props<{ payload: Country[] }>()
 );
+export const addCountryToHistory = createAction(
+    '[COUNTRY_HISTORY] Add',
+    props<{ country: Country }>()
+);
