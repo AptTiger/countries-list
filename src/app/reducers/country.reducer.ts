@@ -10,6 +10,7 @@ const initialState: AppState = { countries: [] }
 
 const countryReducer = createReducer(
     initialState,
+    on(actions.reloadCountries, state => ({ ...state })),
     on(actions.loadedCountries, (state, { payload }) => ({ ...state, countries: payload })),
 );
 
