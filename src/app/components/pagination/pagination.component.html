@@ -1,14 +1,43 @@
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-    <a class="pagination-previous">Previous</a>
-    <a class="pagination-next">Next page</a>
+
+    <!-- Show < link to go to previous page -->
+    <a class="pagination-previous" aria-label="Previous" (click)="goto(currentPageNumber - 1)">
+        Previous
+    </a>
+    <!-- If not on the last page show > link to go to next page -->
+    <a class="pagination-next" aria-label="Next" (click)="goto(currentPageNumber + 1)">
+        Next
+    </a>
+
     <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+        <!-- Build numeric page links using loop -->
+        <li *ngFor="let x of numericLinks">
+            <!-- Ensure we start from a valid page number, since numericLinks can contain negative numbers -->
+            <a *ngIf="x === currentPageNumber" class="pagination-link is-current"
+               aria-label="Current page">
+                {{currentPageNumber}}
+            </a>
+            <a *ngIf="x !== currentPageNumber && x !== totalNumberOfPages" class="pagination-link"
+               (click)="goto(x)">{{x}}</a>
         </li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+
+        <li *ngIf="currentPageNumber !== totalNumberOfPages">
+            <span class="pagination-ellipsis">&hellip;</span>
+        </li>
+
+        <!-- If the total number of pages is greater than 10, show a link to move halfway through the pages -->
+        <li *ngIf="totalNumberOfPages >= 8 && currentPageNumber !== totalNumberOfPages">
+            <a class="pagination-link" aria-label="Halfway" (click)="goto(halfWayThroughThePages)">
+                &half;
+            </a>
+        </li>
+
+        <!-- If not on last page, show link to last page -->
+        <li *ngIf="currentPageNumber !== totalNumberOfPages">
+            <a class="pagination-link" aria-label="Halfway" (click)="goto(totalNumberOfPages)">
+                {{totalNumberOfPages}}
+            </a>
+        </li>
+
     </ul>
 </nav>

@@ -9,6 +9,6 @@ export class CountryService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get('https://restcountries.com/v3.1/all');
+    return this.http.get<any[]>('https://restcountries.com/v3.1/all');
   }
 }
