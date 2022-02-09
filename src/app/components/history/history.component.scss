@@ -10,6 +10,11 @@
         width: 100%;
     }
 
+    .visited-countries {
+        background-clip: content-box;
+        background-color: white;
+    }
+
     .finger {
         text-align: center;
         padding: 2em 0;
