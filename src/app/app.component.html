@@ -1,3 +1,9 @@
+<div *ngIf="!(isDataLoaded$ | async)" class="initial-loader">
+    <div class="positioning">
+        <img class="loading" src="/assets/images/reloadly.png">
+    </div>
+</div>
+
 <div class="container is-fluid">
     <nav navbar></nav>
     <router-outlet></router-outlet>

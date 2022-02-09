@@ -5,8 +5,6 @@ import { Country } from 'src/models/country.model';
 import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
 import { AppState } from '../reducers/country.reducer';
 
-SwiperCore.use([Pagination]);
-
 enum FilterType { SEARCH, REGION }
 
 @Component({
@@ -19,7 +17,6 @@ export class LandingComponent implements OnInit {
   allCountries$: Observable<Country[]>;
   filteredCountries$ = new Observable<Country[]>();
   subsetOfCountries$ = new Subject<Country[]>();
-  swiperConfig: SwiperOptions;
 
   activeFilters: Array<(country: Country, index: number) => void>;
 
@@ -28,23 +25,13 @@ export class LandingComponent implements OnInit {
     this.filteredCountries$ = this.allCountries$;
 
     this.activeFilters = new Array(2);
-    this.swiperConfig = {
-      grabCursor: true,
-      slidesPerView: 4,
-      pagination: true,
-      allowTouchMove: true,
-      spaceBetween: 5
-    }
   }
 
   pagedItems(items: Country[]) {
     this.subsetOfCountries$.next(items);
   }
 
-  ngOnInit(): void {
-    // TODO action is called twice
-    this.store.dispatch({ type: '[COUNTRY] Load' });
-  }
+  ngOnInit(): void { }
 
   searchToken;
   regionFilterToken;
