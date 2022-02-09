@@ -14,7 +14,8 @@ const countryReducer = createReducer(
     on(actions.reloadCountries, state => ({ ...state })),
     on(actions.loadedCountries, (state, { payload }) => ({ ...state, countries: payload })),
     on(actions.addCountryToHistory, (state, { newCountry }) => ({
-        ...state, history: [...state.history, newCountry]
+        // Set makes the array unique
+        ...state, history: [...new Set([...state.history, newCountry])]
     }))
 );
 

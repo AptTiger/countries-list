@@ -1,4 +1,21 @@
-.drag-icon {
-    max-width: 150px;
-    width: 100%;
+@import "node_modules/swiper/swiper.scss";
+// using encapsulation: ViewEncapsulation.None
+
+.columns {
+    margin-top: 1em;
+    margin-bottom: 4em;
+
+    .drag-icon {
+        max-width: 150px;
+        width: 100%;
+    }
+
+    .finger {
+        text-align: center;
+        padding: 2em 0;
+
+        strong {
+            font-size: 1em;
+        }
+    }
 }
