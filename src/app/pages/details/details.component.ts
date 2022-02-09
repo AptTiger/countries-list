@@ -22,19 +22,25 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let countryCode = this.route.snapshot.paramMap.get('countryCode');
-    this.country$ = this.allCountries$.pipe(
-      map(countries => countries.find(c => c.code == countryCode))
-    )
-    this.country$.subscribe(country =>
-      this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country }));
+    let countryCode: string;
+    this.route.paramMap
+      .pipe(takeUntil(this.subscriptions$))
+      .subscribe(paramMap => {
+        countryCode = paramMap.get('countryCode')
+        this.country$ = this.allCountries$.pipe(
+          map(countries => countries.find(c => c.code == countryCode))
+        )
+      })
 
-    this.country$.pipe(
-      takeUntil(this.subscriptions$)
-    ).subscribe(country => this.borders = country?.borders);
+    this.country$
+      .pipe(takeUntil(this.subscriptions$))
+      .subscribe(country => {
+        this.borders = country?.borders;
+        this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country })
+      });
 
     this.neighbors$ = this.allCountries$.pipe(
-      map(countries => countries.filter(c => this.borders.includes(c.code)))
+      map(countries => countries.filter(c => this.borders?.includes(c.code)))
     );
   }
 

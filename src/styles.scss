@@ -29,6 +29,11 @@
     fill: currentColor;
 }
 
+.visited-country {
+    box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.2),
+        0 0px 0 1px rgba($scheme-invert, 0.1);
+}
+
 /* modify bulma */
 .navbar {
     margin-bottom: 1em;
@@ -37,8 +42,4 @@
 .navbar-item {
     padding-left: 0;
     padding-right: 0;
-}
-
-.columns {
-    margin: 0;
 }
