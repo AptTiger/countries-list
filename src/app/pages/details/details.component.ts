@@ -32,16 +32,17 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .pipe(takeUntil(this.subscriptions$))
       .subscribe(paramMap => {
+        // cleanups
+        this.hasRan = false;
+        clearInterval(this.stopInterval);
+
         let countryCode = paramMap.get('countryCode')
         this.country$ = this.allCountries$.pipe(
           map(countries => countries.find(c => c.code == countryCode))
         );
 
         this.country$
-          .pipe(
-            take(2),
-            takeUntil(this.subscriptions$)
-          )
+          .pipe(takeUntil(this.subscriptions$))
           .subscribe(country => {
             this.borders = country?.borders;
             this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country });
@@ -49,18 +50,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
               `https://www.google.com/maps?q=${country?.name}&output=embed`
             );
 
-            // get +5 from UTC+05:00
-            let reformatTimeZone: any = country?.timezone.slice(3, 4)
-              + country?.timezone.slice(5, 7);
-            // remove that :
-            reformatTimeZone = reformatTimeZone[reformatTimeZone.length - 1] == ':' ?
-              reformatTimeZone.substring(0, reformatTimeZone.length - 1) : reformatTimeZone;
-            // ensure it's numeric
+            // get +05 from UTC+05:00
+            let reformatTimeZone: any = country?.timezone.slice(3, 6);
+            // ensure it's numeric before prceeding
             if (!(reformatTimeZone = parseInt(reformatTimeZone)))
-              reformatTimeZone = 0;
+              return
 
-            this.startOnce(() => {
-              let time = DateTime.local().plus({ hours: reformatTimeZone });
+            this.runOnce(() => {
+              let time = DateTime.now().toUTC().plus({ hours: reformatTimeZone });
               this.countryDate$.next(time.toJSDate());
               this.stopInterval = setInterval(() => { // tick seconds
                 time = time.plus({ seconds: 1 });
@@ -81,10 +78,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
     clearInterval(this.stopInterval);
   }
 
-  started = false;
-  startOnce(once) {
-    if (!this.started) once()
-    this.started = true;
+  hasRan = false;
+  runOnce(once) {
+    if (!this.hasRan) once();
+    this.hasRan = true;
   }
 
 }
