@@ -7,8 +7,8 @@
     <div class="card-content">
         <header class="media">
             <div class="media-left">
-                <figure class="image is-24x24   ">
-                    <img src="https://mainfacts.com/media/images/coats_of_arms/ba.svg"
+                <figure class="image is-24x24">
+                    <img [src]="details?.coatOfArms"
                          alt="Placeholder image">
                 </figure>
             </div>
@@ -16,16 +16,14 @@
                 <h1><a [routerLink]="['/details/' + details?.code]"
                        class="title is-4">{{details?.name}}</a>
                 </h1>
-                <p class="subtitle is-6">@johnsmith</p>
+                <p class="subtitle is-6">{{details?.region}}</p>
             </div>
         </header>
 
         <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-            <a href="#">#css</a> <a href="#">#responsive</a>
-            <br>
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            {{details?.name}} is a country populated with {{details?.population}}
+            citizens, and is located in {{details?.subRegion}}.
+            <p>Timezone: {{details?.timezone}}</p>
         </div>
     </div>
 </article>

@@ -3,11 +3,15 @@
         <app-country-card [details]="country$ | async"></app-country-card>
     </main>
     <aside class="column">
-        <p>Time</p>
+        <p><b>Time in {{(country$ | async)?.name}}</b></p>
         <div>
-            <span>5:16:32 AM</span>
-            <span>Tue, Jan 5, 2021</span>
+            <p style="font-family: 'Orbitron', sans-serif; font-size: 4em;">
+                {{countryTime$ | async | date:'mediumTime'}}</p>
+            <p>{{countryDate$ | async | date:'fullDate'}}</p>
         </div>
+        <iframe *ngIf="mapUrl != null" style="width: 100%; min-height: 300px; margin-bottom: 1em"
+                [src]="mapUrl">
+        </iframe>
         <p>Neighbors</p>
         <div class="columns is-multiline">
             <div *ngFor="let c of neighbors$ | async" app-country-thumb [details]="c"
