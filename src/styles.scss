@@ -1,19 +1,5 @@
 @import "@bulvar/bulma/bulma.sass";
 
-:root {
-    // --scheme-main: rgb(63, 63, 63);
-    // --text: white;
-    // --pagination-color: white;
-    // --pagination-hover-color: white;
-    // --button-color: white;
-    // --button-hover-color: white;
-    // --input-color: white;
-    // --input-placeholder-color: white;
-    // --title-color: var(--link);
-    // --title-hover-color: lighten(--link, 80%);
-    // --footer-background-color: var(--scheme-main);
-}
-
 .card {
     box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1),
         0 0px 0 1px rgba($scheme-invert, 0.02);

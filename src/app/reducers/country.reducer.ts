@@ -15,7 +15,7 @@ const countryReducer = createReducer(
     on(actions.loadedCountries, (state, { payload }) => ({ ...state, countries: payload })),
     on(actions.addCountryToHistory, (state, { newCountry }) => ({
         // Set makes the array unique
-        ...state, history: [...new Set([...state.history, newCountry])]
+        ...state, history: [...new Set([newCountry, ...state.history].filter(a => a != null))]
     }))
 );
 

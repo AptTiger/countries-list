@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, ReplaySubject, Subject, takeUntil } from 'rxjs';
+import { map, Observable, ReplaySubject, Subject, take, takeUntil } from 'rxjs';
 import { AppState } from 'src/app/reducers/country.reducer';
 import { Country } from 'src/models/country.model';
 import { DateTime } from 'luxon';
@@ -21,6 +21,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   mapUrl: SafeUrl = null;
   private borders = new Array<string>();
   private subscriptions$: ReplaySubject<boolean> = new ReplaySubject(1);
+  private stopInterval;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>,
     private sanitizer: DomSanitizer) {
@@ -28,44 +29,59 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let countryCode: string;
     this.route.paramMap
       .pipe(takeUntil(this.subscriptions$))
       .subscribe(paramMap => {
-        countryCode = paramMap.get('countryCode')
+        // cleanups
+        this.hasRan = false;
+        clearInterval(this.stopInterval);
+
+        let countryCode = paramMap.get('countryCode')
         this.country$ = this.allCountries$.pipe(
           map(countries => countries.find(c => c.code == countryCode))
-        )
-      })
-
-    this.country$
-      .pipe(takeUntil(this.subscriptions$))
-      .subscribe(country => {
-        this.borders = country?.borders;
-        this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country });
-        this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          `https://www.google.com/maps?q=${country?.name}&output=embed`
         );
 
-        let reformatTimeZone = country?.timezone.slice(3, 4) + country?.timezone.slice(5, 7);
-        reformatTimeZone = reformatTimeZone[reformatTimeZone.length - 1] == ':' ?
-          reformatTimeZone.substring(0, reformatTimeZone.length - 1) : reformatTimeZone;
-        let time = DateTime.local().plus({ hours: parseInt(reformatTimeZone) });
-        this.countryDate$.next(time.toJSDate());
-        setInterval(() => { // tick seconds
-          time = time.plus({ seconds: 1 });
-          this.countryTime$.next(time.toJSDate());
-        }, 1000)
-      });
+        this.country$
+          .pipe(takeUntil(this.subscriptions$))
+          .subscribe(country => {
+            this.borders = country?.borders;
+            this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country });
+            this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+              `https://www.google.com/maps?q=${country?.name}&output=embed`
+            );
 
-    this.neighbors$ = this.allCountries$.pipe(
-      map(countries => countries.filter(c => this.borders?.includes(c.code)))
-    );
+            // get +05 from UTC+05:00
+            let reformatTimeZone: any = country?.timezone.slice(3, 6);
+            // ensure it's numeric before prceeding
+            if (!(reformatTimeZone = parseInt(reformatTimeZone)))
+              return
+
+            this.runOnce(() => {
+              let time = DateTime.now().toUTC().plus({ hours: reformatTimeZone });
+              this.countryDate$.next(time.toJSDate());
+              this.stopInterval = setInterval(() => { // tick seconds
+                time = time.plus({ seconds: 1 });
+                this.countryTime$.next(time.toJSDate());
+              }, 1000)
+            })
+          });
+
+        this.neighbors$ = this.allCountries$.pipe(
+          map(countries => countries.filter(c => this.borders?.includes(c.code)))
+        );
+      })
   }
 
   ngOnDestroy(): void {
     this.subscriptions$.next(true);
     this.subscriptions$.complete();
+    clearInterval(this.stopInterval);
+  }
+
+  hasRan = false;
+  runOnce(once) {
+    if (!this.hasRan) once();
+    this.hasRan = true;
   }
 
 }
