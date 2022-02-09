@@ -1,6 +1,10 @@
 @import "node_modules/swiper/swiper.scss";
 // using encapsulation: ViewEncapsulation.None
 
+:root {
+    --film: #f7f7f7;
+}
+
 .columns {
     margin-top: 1em;
     margin-bottom: 4em;
@@ -12,7 +16,10 @@
 
     .visited-countries {
         background-clip: content-box;
-        background-color: white;
+    }
+
+    .min-height {
+        height: min-content;
     }
 
     .finger {

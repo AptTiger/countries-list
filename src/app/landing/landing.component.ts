@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, Subject } from 'rxjs';
 import { Country } from 'src/models/country.model';
-import SwiperCore, { SwiperOptions, Pagination } from 'swiper';
+import { PaginationComponent } from '../components/pagination/pagination.component';
 import { AppState } from '../reducers/country.reducer';
 
 enum FilterType { SEARCH, REGION }
@@ -18,6 +18,7 @@ export class LandingComponent implements OnInit {
   filteredCountries$ = new Observable<Country[]>();
   subsetOfCountries$ = new Subject<Country[]>();
 
+  @ViewChild(PaginationComponent) paging: PaginationComponent;
   activeFilters: Array<(country: Country, index: number) => void>;
 
   constructor(private store: Store<AppState>) {
@@ -58,6 +59,7 @@ export class LandingComponent implements OnInit {
     }
 
     this.store.dispatch({ type: '[COUNTRY] Reload' });
+    this.paging.goto(1); // goto first page
   }
 
   filterListBySearch(token: string) {

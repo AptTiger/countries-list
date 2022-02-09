@@ -21,8 +21,8 @@ export class StyleService {
     document.documentElement.style.setProperty('--input-color', 'hsl(0, 0%, 21%)');
     document.documentElement.style.setProperty('--input-placeholder-color', 'hsl(0, 0%, 21%)');
     document.documentElement.style.setProperty('--title-color', 'var(--link)');
-    document.documentElement.style.setProperty('--title-hover-color', 'lighten(--link, 80%)');
-    document.documentElement.style.setProperty('--footer-background-color', 'var(--scheme-main');
+    document.documentElement.style.setProperty('--footer-background-color', 'var(--scheme-main)');
+    document.documentElement.style.setProperty('--film', '#f7f7f7');
   }
 
   setNight(): void {
@@ -36,8 +36,8 @@ export class StyleService {
     document.documentElement.style.setProperty('--input-color', 'white');
     document.documentElement.style.setProperty('--input-placeholder-color', 'white');
     document.documentElement.style.setProperty('--title-color', 'var(--link)');
-    document.documentElement.style.setProperty('--title-hover-color', 'lighten(--link, 80%)');
-    document.documentElement.style.setProperty('--footer-background-color', 'var(--scheme-main');
+    document.documentElement.style.setProperty('--footer-background-color', 'var(--scheme-main)');
+    document.documentElement.style.setProperty('--film', '#555555');
   }
 
   switchTheme(): void {

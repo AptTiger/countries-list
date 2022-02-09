@@ -1,5 +1,6 @@
 <aside class="columns">
-    <div class="column visited-countries is-three-quarters-desktop">
+    <div class="column visited-countries is-three-quarters-desktop"
+         style="background-color: var(--film)" [class.min-height]="(history$ | async).length > 0">
         <swiper [config]="swiperConfig">
             <ng-template *ngFor="let country of history$ | async" swiperSlide>
                 <div [details]="country" class="visited-country" app-country-thumb></div>
