@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers/country.reducer';
 
@@ -8,11 +8,12 @@ import { AppState } from 'src/app/reducers/country.reducer';
 })
 export class CountryService {
 
-  constructor(private http: HttpClient, private store: Store<AppState>) {
+  constructor(@Inject('API_ENDPOINT') private endpoint: string,
+    private http: HttpClient, private store: Store<AppState>) {
     this.store.dispatch({ type: '[COUNTRY] Load' });
   }
 
   getAll() {
-    return this.http.get<any[]>('https://restcountries.com/v3.1/all');
+    return this.http.get<any[]>(this.endpoint);
   }
 }

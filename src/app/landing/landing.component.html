@@ -2,36 +2,7 @@
                    (regionFilterSet)="filterListByRegion($event)">
 </app-search-filter>
 
-<aside class="columns">
-    <div class="column visited-countries is-three-quarters-desktop">
-        <swiper [config]="swiperConfig">
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div app-country-thumb></div>
-            </ng-template>
-        </swiper>
-    </div>
-    <div class="column is-one-quarter-desktop is-one-third-tablet">
-        <img src="/assets/images/drag-left.svg" class="drag-icon" alt="Drag Left">
-    </div>
-</aside>
+<app-history></app-history>
 
 <main class="columns is-multiline is-3-desktop">
     <div *ngFor="let country of subsetOfCountries$ | async"

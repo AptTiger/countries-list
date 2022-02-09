@@ -8,12 +8,15 @@ import { FooterComponent } from './footer/footer.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CountryThumbComponent } from './country-thumb/country-thumb.component';
 import { RouterModule } from '@angular/router';
+import { HistoryComponent } from './history/history.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  declarations: [CountryCardComponent, NavbarComponent, SearchFilterComponent, SvgComponent, FooterComponent, PaginationComponent, CountryThumbComponent],
+  declarations: [CountryCardComponent, NavbarComponent, SearchFilterComponent, SvgComponent, FooterComponent, PaginationComponent, CountryThumbComponent, HistoryComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SwiperModule
   ],
   exports: [
     SvgComponent,
@@ -22,6 +25,7 @@ import { RouterModule } from '@angular/router';
     SearchFilterComponent,
     PaginationComponent,
     CountryThumbComponent,
+    HistoryComponent,
     FooterComponent
   ]
 })

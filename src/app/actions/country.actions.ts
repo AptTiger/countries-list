@@ -9,5 +9,5 @@ export const loadedCountries = createAction(
 );
 export const addCountryToHistory = createAction(
     '[COUNTRY_HISTORY] Add',
-    props<{ country: Country }>()
+    props<{ newCountry: Country }>()
 );

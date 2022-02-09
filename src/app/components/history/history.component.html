@@ -1,0 +1,12 @@
+<aside class="columns">
+    <div class="column visited-countries is-three-quarters-desktop">
+        <swiper [config]="swiperConfig">
+            <ng-template *ngFor="let country of history$ | async" swiperSlide>
+                <div [details]="country" app-country-thumb></div>
+            </ng-template>
+        </swiper>
+    </div>
+    <div class="column is-one-quarter-desktop is-one-third-tablet">
+        <img src="/assets/images/drag-left.svg" class="drag-icon" alt="Drag Left">
+    </div>
+</aside>

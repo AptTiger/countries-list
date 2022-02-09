@@ -22,13 +22,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // TODO action is called twice
-    this.store.dispatch({ type: '[COUNTRY] Load' });
-
     let countryCode = this.route.snapshot.paramMap.get('countryCode');
     this.country$ = this.allCountries$.pipe(
       map(countries => countries.find(c => c.code == countryCode))
-    );
+    )
+    this.country$.subscribe(country =>
+      this.store.dispatch({ type: '[COUNTRY_HISTORY] Add', newCountry: country }));
 
     this.country$.pipe(
       takeUntil(this.subscriptions$)
