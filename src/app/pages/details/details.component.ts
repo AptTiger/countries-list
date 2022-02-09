@@ -54,7 +54,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
             let reformatTimeZone: any = country?.timezone.slice(3, 6);
             // ensure it's numeric before prceeding
             if (!(reformatTimeZone = parseInt(reformatTimeZone)))
-              return
+              reformatTimeZone = 0;
+            if (typeof reformatTimeZone != 'number')
+              return;
 
             this.runOnce(() => {
               let time = DateTime.now().toUTC().plus({ hours: reformatTimeZone });
