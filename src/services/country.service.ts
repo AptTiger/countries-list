@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { AppState } from 'src/app/reducers/country.reducer';
+import { API_ENDPOINT } from 'src/config';
 import { StyleService } from './style.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { StyleService } from './style.service';
 })
 export class CountryService {
 
-  constructor(@Inject('API_ENDPOINT') private endpoint: string,
+  constructor(@Inject(API_ENDPOINT) private endpoint: string,
     private http: HttpClient, private store: Store<AppState>, private style: StyleService) {
     this.store.dispatch({ type: '[COUNTRY] Load' });
   }

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { SearchFilterComponent } from './search-filter.component';
 
@@ -8,9 +10,13 @@ describe('SearchFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchFilterComponent ]
+      imports: [
+        RouterTestingModule,
+        StoreModule.forRoot({})
+      ],
+      declarations: [SearchFilterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
