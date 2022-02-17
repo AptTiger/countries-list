@@ -31,9 +31,7 @@ export class PaginationComponent implements AfterViewInit, OnChanges {
     this.emitBlocks();
   }
 
-  ngAfterViewInit() {
-    this.emitBlocks();
-  }
+  ngAfterViewInit() { }
 
   // generates the page numbers, and stores them in an array
   // note that this does not deal with the previous and next 

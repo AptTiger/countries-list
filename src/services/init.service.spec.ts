@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { InitService } from './init.service';
 
@@ -6,7 +7,9 @@ describe('InitService', () => {
   let service: InitService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({})]
+    });
     service = TestBed.inject(InitService);
   });
 

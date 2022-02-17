@@ -13,7 +13,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { CountryEffects } from './effects/country.effects';
 import { HttpClientModule } from '@angular/common/http';
-import { API_ENDPOINT } from 'src/config';
+import { API_ENDPOINT, REST_ENDPOINT } from 'src/config';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { API_ENDPOINT } from 'src/config';
       countries: countryReducer
     })
   ],
-  providers: [{ provide: 'API_ENDPOINT', useValue: API_ENDPOINT }],
+  providers: [{ provide: API_ENDPOINT, useValue: REST_ENDPOINT }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

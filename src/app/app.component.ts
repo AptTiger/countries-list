@@ -10,7 +10,7 @@ import { StyleService } from 'src/services/style.service';
 })
 export class AppComponent {
   isDataLoaded$: BehaviorSubject<boolean>;
-  title = 'countries-list';
+  title = 'Countries!';
 
   constructor(private styleService: StyleService, private init: InitService) {
     this.isDataLoaded$ = styleService.isDataLoaded$;
